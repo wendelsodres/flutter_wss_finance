@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './models/transaction.dart';
+import 'package:intl/intl.dart';
 
 void main() => runApp(WssFinance());
 
@@ -36,7 +37,6 @@ class HomePage extends StatelessWidget {
           title: Text('Wss Finance'),
         ),
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Container(
@@ -61,15 +61,23 @@ class HomePage extends StatelessWidget {
                         ),
                       ),
                       padding: EdgeInsets.all(10),
-                      child: Text(tr.value.toString()),
+                      child: Text('R\$ ${tr.value.toStringAsFixed(2)}'),
                     ),
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(tr.title),
                         Text(
-                          tr.date.toString(),
+                          tr.title,
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF333333)),
+                        ),
+                        Text(
+                          DateFormat('d/MM/y').format(tr.date),
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
+                            color: Color(0xFFCCCCCC),
                           ),
                         ),
                       ],
@@ -77,7 +85,32 @@ class HomePage extends StatelessWidget {
                   ],
                 ));
               }).toList(),
-            )
+            ),
+            Card(
+              elevation: 5,
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Column(
+                  children: <Widget>[
+                    TextField(
+                      decoration: InputDecoration(
+                        labelText: 'Titulo',
+                      ),
+                    ),
+                    TextField(
+                      decoration: InputDecoration(
+                        labelText: 'Valor (R\$)',
+                      ),
+                    ),
+                    FlatButton(
+                      child: Text('New transaction'),
+                      textColor: Colors.redAccent,
+                      onPressed: (){},
+                    )
+                  ],
+                ),
+              ),
+            ),
           ],
         ));
   }

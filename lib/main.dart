@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'components/transaction_form.dart';
 import 'dart:math';
 import 'components/transaction_list.dart';
@@ -10,6 +11,11 @@ void main() => runApp(WssFinance());
 class WssFinance extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
+
     return MaterialApp(
       theme: ThemeData(
         primaryColor: Colors.teal[300],
@@ -105,11 +111,11 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Container(
-              height: availableHeight * 0.35,
+              height: availableHeight * 0.32,
               child: Chart(_recentTransactions),
             ),
             Container(
-              height: availableHeight * 0.65,
+              height: availableHeight * 0.68,
               child: TransactionList(_transactions, _deleteTransaction),
             ),
           ],

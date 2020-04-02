@@ -16,10 +16,10 @@ class ChartBar extends StatelessWidget {
     return Column(
       children: <Widget>[
         Container(
-          height: 20,
+            height: 20,
             child: FittedBox(
-          child: Text('R\$${value.toStringAsFixed(2)}'),
-        )),
+              child: Text('R\$${value.toStringAsFixed(2)}'),
+            )),
         SizedBox(height: 5),
         Container(
           width: 10,
@@ -39,11 +39,12 @@ class ChartBar extends StatelessWidget {
               ),
               FractionallySizedBox(
                 heightFactor: percentage,
-                child: Container(
+                child: AnimatedContainer(
                   decoration: BoxDecoration(
                     color: Theme.of(context).primaryColor,
-                    borderRadius: BorderRadius.circular(2),
+                    borderRadius: BorderRadius.circular(8),
                   ),
+                  duration: Duration(milliseconds: 1000),
                 ),
               ),
             ],

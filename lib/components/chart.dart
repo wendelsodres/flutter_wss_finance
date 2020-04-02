@@ -40,6 +40,7 @@ class Chart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Card(
       elevation: 6,
       margin: EdgeInsets.all(20),
@@ -53,7 +54,7 @@ class Chart extends StatelessWidget {
               child: ChartBar(
                 label: tr['day'],
                 value: tr['value'],
-                percentage: _weekTotal == 0 ? _weekTotal : (tr['value'] as double) / _weekTotal,
+                percentage: _weekTotal == 0 ? 0 : (tr['value'] as double) / _weekTotal,
               ),
             );
           }).toList(),

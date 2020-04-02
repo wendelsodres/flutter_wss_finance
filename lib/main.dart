@@ -42,9 +42,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final List<Transaction> _transactions = [
-
-  ];
+  final List<Transaction> _transactions = [];
 
   List<Transaction> get _recentTransactions {
     return _transactions.where((tr) {
@@ -54,12 +52,12 @@ class _HomePageState extends State<HomePage> {
     }).toList();
   }
 
-  _addTransaction(String title, double value) {
+  _addTransaction(String title, double value, DateTime date) {
     final newTransaction = Transaction(
       id: Random().nextDouble().toString(),
       title: title,
       value: value,
-      date: DateTime.now(),
+      date: date,
     );
 
     setState(() {
@@ -67,6 +65,12 @@ class _HomePageState extends State<HomePage> {
     });
 
     Navigator.of(context).pop();
+  }
+
+  _deleteTransaction(String id) {
+    setState(() {
+      _transactions.removeWhere((tr) => tr.id == id);
+    });
   }
 
   _openTransactionFormModal(BuildContext context) {
@@ -80,8 +84,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
+    final appBar =  AppBar(
         title: Text('Wss Finance'),
         actions: <Widget>[
           IconButton(
@@ -91,13 +94,24 @@ class _HomePageState extends State<HomePage> {
             onPressed: () => _openTransactionFormModal(context),
           )
         ],
-      ),
+    );
+
+    final availableHeight = MediaQuery.of(context).size.height - appBar.preferredSize.height - MediaQuery.of(context).padding.top;
+
+    return Scaffold(
+      appBar: appBar,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-           Chart(_recentTransactions),
-            TransactionList(_transactions),
+            Container(
+              height: availableHeight * 0.35,
+              child: Chart(_recentTransactions),
+            ),
+            Container(
+              height: availableHeight * 0.65,
+              child: TransactionList(_transactions, _deleteTransaction),
+            ),
           ],
         ),
       ),

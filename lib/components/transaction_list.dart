@@ -25,13 +25,13 @@ class TransactionList extends StatelessWidget {
               itemCount: transactions.length,
               itemBuilder: (context, index) {
                 final tr = transactions[index];
+
                 return Card(
                   elevation: 5,
                   margin: EdgeInsets.symmetric(
                     vertical: 8,
                     horizontal: 5,
                   ),
-
                   child: ListTile(
                     leading: CircleAvatar(
                       backgroundColor: Colors.teal[400],
@@ -43,11 +43,7 @@ class TransactionList extends StatelessWidget {
                         ),
                       ),
                     ),
-                    title: Text(
-                      tr.title,
-                      style: TextStyle(fontSize: 16)
-
-                    ),
+                    title: Text(tr.title, style: TextStyle(fontSize: 16)),
                     subtitle: Text(
                       DateFormat('d MMM y').format(tr.date),
                       style: TextStyle(fontSize: 12),

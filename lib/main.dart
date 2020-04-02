@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'components/transaction_form.dart';
 import 'dart:math';
-import 'components/transaction_form.dart';
 import 'components/transaction_list.dart';
 import 'components/chart.dart';
 import 'models/transaction.dart';

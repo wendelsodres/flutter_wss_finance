@@ -90,6 +90,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+
+    print('Build() _HomePageState');
     final appBar =  AppBar(
         title: Text('Wss Finance'),
         actions: <Widget>[

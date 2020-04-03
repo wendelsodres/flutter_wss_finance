@@ -6,7 +6,9 @@ import '../models/transaction.dart';
 class Chart extends StatelessWidget {
   final List<Transaction> recentTransaction;
 
-  Chart(this.recentTransaction);
+  Chart(this.recentTransaction) {
+    print('Constructor Chart');
+  }
 
   List<Map<String, Object>> get groupedTransactions {
     return List.generate(7, (index) {
@@ -41,6 +43,8 @@ class Chart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    print('Build() _Chart');
+
     return Card(
       elevation: 6,
       margin: EdgeInsets.all(20),
@@ -54,7 +58,8 @@ class Chart extends StatelessWidget {
               child: ChartBar(
                 label: tr['day'],
                 value: tr['value'],
-                percentage: _weekTotal == 0 ? 0 : (tr['value'] as double) / _weekTotal,
+                percentage:
+                    _weekTotal == 0 ? 0 : (tr['value'] as double) / _weekTotal,
               ),
             );
           }).toList(),
